@@ -9,8 +9,9 @@ class System():
         
         def create_df(self):
                 self.df = pd.read_excel(self.locale)
-        def add_rows_df(self, locale):
-                self.df = pd.concat([self.df, pd.read_excel(locale)], ignore_index=True)
+        
+        def merge(self, main_df, second_df):
+                self.df = main_df.merge(second_df)
         
         def get_df(self): # retorna o DataFrame
                 return(self.df)
@@ -46,16 +47,15 @@ class System():
                         self.get_shape(), # printa o tamanho
                         self.get_describe()] # printa a descrição
 
+        def add_rows_df(self, locale):
+                self.df = pd.concat([self.df, pd.read_excel(locale)], ignore_index=True)
         def add_column_based(self, new_column, base_column):
                 # Criar coluna, com base em colunas existentes
                 self.df[new_column] = self.df[base_column]*0.05
         def add_column_loc (self, new_column, value):
                 # Criar nova coluna, com dados padrões (melhor desempenho parece)
                 self.df.loc[:, new_column] = value
-        
-        def merge(self, main_df, second_df):
-                self.df = main_df.merge(second_df)
-        
+
         def rm_lines(self, line_id):
                 self.df = self.df.drop(id, axis=0)
         def rm_column(self, column):
@@ -66,7 +66,7 @@ class Vendas(System):
                 self.locale = locale
                 self.df = {}
                 self.create_df()
-                   
+
 class Gerentes(System):
         def __init__(self, locale):
                 self.locale = locale
@@ -77,34 +77,21 @@ class VendasGerentes(System):
         def __init__(self, vendas_df, gerentes_df):
                 self.df = {}
                 self.merge(vendas_df, gerentes_df)
-                
-class Interface():
-        def __init__(self): pass
-
-        def linha(self, t=10, qtde=0):
-                for x in range(0, qtde+1):
-                        print(f"{'-'*t}")
-        def title(self,var,t=40,qtde1=0,qtde2=0):
-                print("")
-                self.linha(t, qtde1)
-                print(var)
-                self.linha(int(t/2), qtde2)        
 
 
-
+# instanciando classes necessárias
 def instanciar():
-        If = Interface()
         vendas   = Vendas(  'Pandas/files/vendas.xlsx')
         gerentes = Gerentes('Pandas/files/gerentes.xlsx')
         vendas_gerentes = VendasGerentes(vendas.get_df(), gerentes.get_df())
-
         print("\nClasses instanciadas: ",
                 "\nvendas:",vendas.get_shape(),
                 "\ngerentes: ",gerentes.get_shape(),
                 "\nvendas_gerentes: ",vendas_gerentes.get_shape(),
                 "\nInstanciamento ocorreu bem. \n")
-        return If, vendas_gerentes
-If , vendas = instanciar()
+        return vendas_gerentes
+vendas = instanciar()
+
 
 # Adicionando dezembro
 vendas.add_rows_df('Pandas/files/2019/vendas_dezembro.xlsx') 
@@ -119,4 +106,3 @@ print("vendas_gerentes adcionando as colunas 'Imposto' e 'Comissão: ",vendas.ge
 vendas.rm_column('Comissão')
 vendas.rm_column('Imposto')
 print("vendas_gerentes removendo as colunas 'Imposto' e 'Comissão: ",vendas.get_shape())
-
