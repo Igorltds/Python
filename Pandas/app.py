@@ -81,7 +81,7 @@ class Interface():
 
 
 # Instanciando Vendas e Interface
-vendas_2019 = Vendas('app/')
+vendas_2019 = Vendas('Pandas/files/')
 If = Interface()
 
 # Printar os dois relatorios dos respectivos meses: 
