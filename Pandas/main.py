@@ -1,5 +1,4 @@
 import pandas as pd #install
-from IPython.display import display
 import openpyxl #install
 
 # Aqui é onde a mágica acontece:
