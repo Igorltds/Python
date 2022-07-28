@@ -28,14 +28,3 @@ class Carro():
         for a, b in self.carro_dic.items():
             print(a, b)
 
-
-
-
-def main1():
-    main = Carro("honda", "hrv", "prata")
-
-        # Prints
-    main.print_all_keys()
-    main.print_all_values()
-    main.print_all_items()
-    main.print_all_items_clean()

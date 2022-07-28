@@ -77,31 +77,3 @@ class VendasGerentes(System):
                 self.df = {}
                 self.merge(vendas_df, gerentes_df)
 
-
-# instanciando classes necessárias
-def instanciar():
-        vendas   = Vendas(  'Pandas/files/vendas.xlsx')
-        gerentes = Gerentes('Pandas/files/gerentes.xlsx')
-        vendas_gerentes = VendasGerentes(vendas.get_df(), gerentes.get_df())
-        print("\nClasses instanciadas: ",
-                "\nvendas:",vendas.get_shape(),
-                "\ngerentes: ",gerentes.get_shape(),
-                "\nvendas_gerentes: ",vendas_gerentes.get_shape(),
-                "\nInstanciamento ocorreu bem. \n")
-        return vendas_gerentes
-vendas = instanciar()
-
-
-# Adicionando dezembro
-vendas.add_rows_df('Pandas/files/2019/vendas_dezembro.xlsx') 
-print("vendas_gerentes arquivo de dezembro adcionado: ",vendas.get_shape())
-
-# Adicionando Colunas: Comissão e Imposto
-vendas.add_column_loc  ('Imposto', 0) # Adcionando coluna com valor padrão
-vendas.add_column_based('Comissão', 'Valor Final') # Adcionando coluna com base em outra
-print("vendas_gerentes adcionando as colunas 'Imposto' e 'Comissão: ",vendas.get_shape())
-
-#Removendo colunas: Comissão e Imposto
-vendas.rm_column('Comissão')
-vendas.rm_column('Imposto')
-print("vendas_gerentes removendo as colunas 'Imposto' e 'Comissão: ",vendas.get_shape())

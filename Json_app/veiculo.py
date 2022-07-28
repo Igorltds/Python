@@ -7,22 +7,22 @@ from json import load, dump
 
 class Veiculo():
     def __init__(self, locale):
-        self.locale = f"{locale}/app/veiculos.json"
+        self.locale = f"{locale}/veiculos.json"
         self.veiculos = {}
         self.check_file()
 
     def check_file(self):
         try:
             with open(self.locale, "r", encoding='utf-8') as file_json:
-                self.veiculos = load(file_json)[0]
+                self.veiculos = load(file_json)
         except: 
             with open(self.locale, "w", encoding='utf-8') as file_json:
-                file_json.write("[{\n\n}]")
+                file_json.write("{\n\n}")
             self.check_file()
 
     def update_json(self):
         with open(self.locale, "w", encoding='utf-8') as json_file:
-            dump([self.veiculos], json_file)
+            dump(self.veiculos, json_file)
     
     def add_car(self, key, value):
         self.veiculos[key] = { "marca":f"{value[0]}"
@@ -43,16 +43,4 @@ class Veiculo():
 # ----------------------------------------------------------
     
 
-def main2(locale):
-    veiculos = Veiculo(locale) # Instanciando
-    veiculos.status("inicial") #print do que já tem
 
-    news_cars ={"00000004": ["honda","hrv", "prata"], # Add cars'
-                "00000005": ["test0", "tes", "test0"],
-                "00000006": ["test0", "tes", "test0"]}
-    veiculos.add_cars(news_cars)
-
-
-    veiculos.update_json() # SaveFile
-
-    veiculos.status("final") # print de como ficou
