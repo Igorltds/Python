@@ -1,13 +1,24 @@
-import pandas as pd #install
-import openpyxl #install
+import pandas as pd
+from os import getcwd
 
-# Aqui é onde a mágica acontece:
+
 class System():
         def __init__(self):
                 self.df = {}
-        
-        def create_df(self):
-                self.df = pd.read_excel(self.locale)
+
+
+        def df_info(self, file_path):
+                self.file_path = file_path
+                self.file_name = self.file_path.split('/')[-1]
+                self.file_type = self.file_name.split('.')[1]
+
+        def create_df(self, file_path=''):
+                self.df_info(file_path)
+                match self.file_type:
+                        case 'json': self.df = pd.read_json(self.file_path, orient='index')
+                        case 'xlsx': self.df = pd.read_excel(self.file_path)
+                        case _: print('DEu RUIM')
+                
         
         def merge(self, main_df, second_df):
                 self.df = main_df.merge(second_df)
@@ -46,8 +57,8 @@ class System():
                         self.get_shape(), # printa o tamanho
                         self.get_describe()] # printa a descrição
 
-        def add_rows_df(self, locale):
-                self.df = pd.concat([self.df, pd.read_excel(locale)], ignore_index=True)
+        def add_rows_df(self, new_file_path):
+                self.df = pd.concat([self.df, pd.read_excel(new_file_path)], ignore_index=True)
         def add_column_based(self, new_column, base_column):
                 # Criar coluna, com base em colunas existentes
                 self.df[new_column] = self.df[base_column]*0.05
@@ -59,21 +70,11 @@ class System():
                 self.df = self.df.drop(id, axis=0)
         def rm_column(self, column):
                 self.df = self.df.drop(column, axis=1)
+'''
+system = System()
+print(system.df)
 
-class Vendas(System):
-        def __init__(self, locale):
-                self.locale = locale
-                self.df = {}
-                self.create_df()
+system.create_df('dfs/pandas-json/dataframe.json')
 
-class Gerentes(System):
-        def __init__(self, locale):
-                self.locale = locale
-                self.df = {}
-                self.create_df()
-
-class VendasGerentes(System):
-        def __init__(self, vendas_df, gerentes_df):
-                self.df = {}
-                self.merge(vendas_df, gerentes_df)
-
+print(system.file_name)
+print(system.file_type)'''
