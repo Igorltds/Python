@@ -3,43 +3,28 @@
 from classes.test import Test
 print('\nIniciando teste')
 try: # test
-    test = Test()
-    test.criar_dfs('dfs/test/')
-    test.test()
-except Exception as inst:
+    if Test().main()['test_01'] == True: print('Normalmente')
+
+    else: print('!!!!ERRO!!!!')
+except Exception as inst:   
     print('\n!!! Algo deu Muito errado com o Test!!! \n', inst)
 finally: print("\n-----!Teste Iniciado!-----\n")
 
 
-from tests.teste_vendasgerentes import Test_vendasgerentes
+from tests.test_vendasgerentes import Test_vendasgerentes
 try:
-    test = Test_vendasgerentes('dfs/pandas_excel')
-    test.criar_dfs_iniciais()
-    test.criar_vendasgerentes()
-    print(
-        f"vendas={test.vendas.get_shape()}",
-        f"\ngerentes={test.gerentes.get_shape()}",
-        f"\nvendasgerentes: {test.vendasgerentes.get_shape()}")
-    
-    test.test()
+    if Test_vendasgerentes('dfs/pandas_excel').main() == True: print('teste_vendas gerentes correu bem')
 
-    print('\nO Test_01 passou!!! ')
-
-except Exception as inst:
-    print('\n !!!Erro, Teste_vendasgerentes!!!\n', inst)
-finally: print("\nFim do test_vendasgerentes.py\n")
-
-
-
-
+    else: print('!!!!ERRO!!!!')
+except Exception as inst:   
+    print('\n!!! Algo errado: teste_vendasgerentes !!!\n', inst)
 
 
 '''
-from Pandas_app.tests.test_02 import Test_02
+from tests.test_json import Test_json
 try:
-    if Test_02.main():
+    if Test_json.main():
         print('\nO Test_02 passou!!! ')
     else: print('!!! Algo deu errado com o Test_02 ')
 except: print('!!! Algo deu Muito errado com o Test_02!!! \n')
-
 '''
