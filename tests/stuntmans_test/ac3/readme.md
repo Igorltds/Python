@@ -2,6 +2,8 @@
 ## Integrantes:
   - Felipe Waddington Pereira Jeronymo 1904837
   - Igor Luan Teles De Souza 1905365
+  - Vinicius Leandro do Nascimento 1904832
+  - Phelipe ruiz de sousa salustiano 1900682
 
 ## Requirementes:
 - pytest
