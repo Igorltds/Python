@@ -1,4 +1,8 @@
 # AC3 - Automação de Testes de Software's
+## Integrantes
+  - Felipe Waddington Pereira Jeronymo 1904837
+  - Igor Luan Teles De Souza 1905365
+
 ## Requirementes 
 - pytest
 - unittest
