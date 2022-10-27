@@ -1,3 +1,6 @@
+#from sys import path
+#path.insert(1, '/home/home/luaa/projects/python/tests/stuntman_test/unittest')
+
 from pytest import fixture, raises
 from unittest.mock import Mock
 
@@ -26,7 +29,7 @@ def test_get_book_id(book):
 
 
 def test_get_book_id_not_found():
-    bookRepository = Mock()
+    bookRepository = Mock() # Mock
     bookRepository.get_book.side_effect=ExceptionBookNotfound
     
     with raises(ExceptionBookNotfound):

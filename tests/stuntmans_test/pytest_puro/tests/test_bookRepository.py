@@ -1,5 +1,5 @@
 #from sys import path
-#path.insert(1, '/home/home/luaa/projects/python/tests/stuntman_test')
+#path.insert(1, '/home/home/luaa/projects/python/tests/stuntman_test/pytest_puro')
 
 from src.book import Book
 from BookRepositoryMock import BookRepositoryMock
