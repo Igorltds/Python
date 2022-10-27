@@ -4,15 +4,15 @@
 - unittest
 - requests
 
-## instalar e rodar ac3 (recomendo professora)
-já no terminal, clone o repositorio:
+## Instalar e rodar ac3 (recomendo professora)
+### Já no terminal, clone o repositorio:
   git clone https://github.com/Igorltds/python.git
-abrir pasta da ac:
+### Abrir pasta da ac:
 - cd python/tests/stuntmans_test/ac3/
-rodar a ac:
+### rodar a ac:
 - pytest
-sair e excluir tudo:
-- cd ../../.. && rm -rf python
+### sair e excluir tudo:
+- cd ../../../.. && rm -rf python
 
 ## rodar apenas:
 estando na pasta ac3 basta colocar no terminal:
