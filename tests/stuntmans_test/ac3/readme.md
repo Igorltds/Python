@@ -1,25 +1,29 @@
 # AC3 - Automação de Testes de Software's
-## Integrantes
+## Integrantes:
   - Felipe Waddington Pereira Jeronymo 1904837
   - Igor Luan Teles De Souza 1905365
 
-## Requirementes 
+## Requirementes:
 - pytest
 - unittest
 - requests
 
-## Instalar e rodar ac3 (recomendo professora)
-### Já no terminal, clone o repositorio:
-  git clone https://github.com/Igorltds/python.git
-### Abrir pasta da ac:
+## Instalar e rodar ac3:
+#### Já no terminal, clone o repositorio:
+- git clone https://github.com/Igorltds/python.git
+#### Abrir pasta da ac:
 - cd python/tests/stuntmans_test/ac3/
-### rodar a ac:
+#### Rodar a ac:
 - pytest
-### sair e excluir tudo:
+#### Sair e excluir tudo:
 - cd ../../../.. && rm -rf python
 
-## rodar apenas:
-estando na pasta ac3 basta colocar no terminal:
+---
+#### Pode ignorar daqui para baixo professora.
+
+
+## Rodar apenas:
+#### Estando na pasta ac3 basta colocar no terminal:
 - pytest
-Ou estando na pasta rais do projeto python, coloque:
+#### Ou estando na pasta rais do projeto python, coloque:
 - pytest tests/stuntmans_test/ac3/
